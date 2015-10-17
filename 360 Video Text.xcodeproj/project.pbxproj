@@ -1,0 +1,521 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		80A619291BD2C91800DFCAF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A619281BD2C91800DFCAF9 /* main.m */; };
+		80A6192C1BD2C91800DFCAF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6192B1BD2C91800DFCAF9 /* AppDelegate.m */; };
+		80A6192F1BD2C91800DFCAF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6192E1BD2C91800DFCAF9 /* ViewController.m */; };
+		80A619321BD2C91800DFCAF9 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A619301BD2C91800DFCAF9 /* Main.storyboard */; };
+		80A619341BD2C91800DFCAF9 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80A619331BD2C91800DFCAF9 /* Assets.xcassets */; };
+		80A619371BD2C91800DFCAF9 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80A619351BD2C91800DFCAF9 /* LaunchScreen.storyboard */; };
+		80A619421BD2C91800DFCAF9 /* _60_Video_TextTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A619411BD2C91800DFCAF9 /* _60_Video_TextTests.m */; };
+		80A6194D1BD2C91800DFCAF9 /* _60_Video_TextUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6194C1BD2C91800DFCAF9 /* _60_Video_TextUITests.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		80A6193E1BD2C91800DFCAF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80A6191C1BD2C91700DFCAF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A619231BD2C91700DFCAF9;
+			remoteInfo = "360 Video Text";
+		};
+		80A619491BD2C91800DFCAF9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 80A6191C1BD2C91700DFCAF9 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 80A619231BD2C91700DFCAF9;
+			remoteInfo = "360 Video Text";
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		80A619241BD2C91700DFCAF9 /* 360 Video Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "360 Video Text.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80A619281BD2C91800DFCAF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		80A6192A1BD2C91800DFCAF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		80A6192B1BD2C91800DFCAF9 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		80A6192D1BD2C91800DFCAF9 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		80A6192E1BD2C91800DFCAF9 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		80A619311BD2C91800DFCAF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		80A619331BD2C91800DFCAF9 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		80A619361BD2C91800DFCAF9 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		80A619381BD2C91800DFCAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80A6193D1BD2C91800DFCAF9 /* 360 Video TextTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "360 Video TextTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80A619411BD2C91800DFCAF9 /* _60_Video_TextTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _60_Video_TextTests.m; sourceTree = "<group>"; };
+		80A619431BD2C91800DFCAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		80A619481BD2C91800DFCAF9 /* 360 Video TextUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "360 Video TextUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		80A6194C1BD2C91800DFCAF9 /* _60_Video_TextUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = _60_Video_TextUITests.m; sourceTree = "<group>"; };
+		80A6194E1BD2C91800DFCAF9 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		80A619211BD2C91700DFCAF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80A6193A1BD2C91800DFCAF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80A619451BD2C91800DFCAF9 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		80A6191B1BD2C91700DFCAF9 = {
+			isa = PBXGroup;
+			children = (
+				80A619261BD2C91800DFCAF9 /* 360 Video Text */,
+				80A619401BD2C91800DFCAF9 /* 360 Video TextTests */,
+				80A6194B1BD2C91800DFCAF9 /* 360 Video TextUITests */,
+				80A619251BD2C91700DFCAF9 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		80A619251BD2C91700DFCAF9 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				80A619241BD2C91700DFCAF9 /* 360 Video Text.app */,
+				80A6193D1BD2C91800DFCAF9 /* 360 Video TextTests.xctest */,
+				80A619481BD2C91800DFCAF9 /* 360 Video TextUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		80A619261BD2C91800DFCAF9 /* 360 Video Text */ = {
+			isa = PBXGroup;
+			children = (
+				80A6192A1BD2C91800DFCAF9 /* AppDelegate.h */,
+				80A6192B1BD2C91800DFCAF9 /* AppDelegate.m */,
+				80A6192D1BD2C91800DFCAF9 /* ViewController.h */,
+				80A6192E1BD2C91800DFCAF9 /* ViewController.m */,
+				80A619301BD2C91800DFCAF9 /* Main.storyboard */,
+				80A619331BD2C91800DFCAF9 /* Assets.xcassets */,
+				80A619351BD2C91800DFCAF9 /* LaunchScreen.storyboard */,
+				80A619381BD2C91800DFCAF9 /* Info.plist */,
+				80A619271BD2C91800DFCAF9 /* Supporting Files */,
+			);
+			path = "360 Video Text";
+			sourceTree = "<group>";
+		};
+		80A619271BD2C91800DFCAF9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				80A619281BD2C91800DFCAF9 /* main.m */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		80A619401BD2C91800DFCAF9 /* 360 Video TextTests */ = {
+			isa = PBXGroup;
+			children = (
+				80A619411BD2C91800DFCAF9 /* _60_Video_TextTests.m */,
+				80A619431BD2C91800DFCAF9 /* Info.plist */,
+			);
+			path = "360 Video TextTests";
+			sourceTree = "<group>";
+		};
+		80A6194B1BD2C91800DFCAF9 /* 360 Video TextUITests */ = {
+			isa = PBXGroup;
+			children = (
+				80A6194C1BD2C91800DFCAF9 /* _60_Video_TextUITests.m */,
+				80A6194E1BD2C91800DFCAF9 /* Info.plist */,
+			);
+			path = "360 Video TextUITests";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		80A619231BD2C91700DFCAF9 /* 360 Video Text */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80A619511BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video Text" */;
+			buildPhases = (
+				80A619201BD2C91700DFCAF9 /* Sources */,
+				80A619211BD2C91700DFCAF9 /* Frameworks */,
+				80A619221BD2C91700DFCAF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "360 Video Text";
+			productName = "360 Video Text";
+			productReference = 80A619241BD2C91700DFCAF9 /* 360 Video Text.app */;
+			productType = "com.apple.product-type.application";
+		};
+		80A6193C1BD2C91800DFCAF9 /* 360 Video TextTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80A619541BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video TextTests" */;
+			buildPhases = (
+				80A619391BD2C91800DFCAF9 /* Sources */,
+				80A6193A1BD2C91800DFCAF9 /* Frameworks */,
+				80A6193B1BD2C91800DFCAF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80A6193F1BD2C91800DFCAF9 /* PBXTargetDependency */,
+			);
+			name = "360 Video TextTests";
+			productName = "360 Video TextTests";
+			productReference = 80A6193D1BD2C91800DFCAF9 /* 360 Video TextTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		80A619471BD2C91800DFCAF9 /* 360 Video TextUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 80A619571BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video TextUITests" */;
+			buildPhases = (
+				80A619441BD2C91800DFCAF9 /* Sources */,
+				80A619451BD2C91800DFCAF9 /* Frameworks */,
+				80A619461BD2C91800DFCAF9 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				80A6194A1BD2C91800DFCAF9 /* PBXTargetDependency */,
+			);
+			name = "360 Video TextUITests";
+			productName = "360 Video TextUITests";
+			productReference = 80A619481BD2C91800DFCAF9 /* 360 Video TextUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		80A6191C1BD2C91700DFCAF9 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0700;
+				ORGANIZATIONNAME = "Nathan Fennel";
+				TargetAttributes = {
+					80A619231BD2C91700DFCAF9 = {
+						CreatedOnToolsVersion = 7.0.1;
+					};
+					80A6193C1BD2C91800DFCAF9 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 80A619231BD2C91700DFCAF9;
+					};
+					80A619471BD2C91800DFCAF9 = {
+						CreatedOnToolsVersion = 7.0.1;
+						TestTargetID = 80A619231BD2C91700DFCAF9;
+					};
+				};
+			};
+			buildConfigurationList = 80A6191F1BD2C91700DFCAF9 /* Build configuration list for PBXProject "360 Video Text" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 80A6191B1BD2C91700DFCAF9;
+			productRefGroup = 80A619251BD2C91700DFCAF9 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				80A619231BD2C91700DFCAF9 /* 360 Video Text */,
+				80A6193C1BD2C91800DFCAF9 /* 360 Video TextTests */,
+				80A619471BD2C91800DFCAF9 /* 360 Video TextUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		80A619221BD2C91700DFCAF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A619371BD2C91800DFCAF9 /* LaunchScreen.storyboard in Resources */,
+				80A619341BD2C91800DFCAF9 /* Assets.xcassets in Resources */,
+				80A619321BD2C91800DFCAF9 /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80A6193B1BD2C91800DFCAF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80A619461BD2C91800DFCAF9 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		80A619201BD2C91700DFCAF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A6192F1BD2C91800DFCAF9 /* ViewController.m in Sources */,
+				80A6192C1BD2C91800DFCAF9 /* AppDelegate.m in Sources */,
+				80A619291BD2C91800DFCAF9 /* main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80A619391BD2C91800DFCAF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A619421BD2C91800DFCAF9 /* _60_Video_TextTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		80A619441BD2C91800DFCAF9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				80A6194D1BD2C91800DFCAF9 /* _60_Video_TextUITests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		80A6193F1BD2C91800DFCAF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A619231BD2C91700DFCAF9 /* 360 Video Text */;
+			targetProxy = 80A6193E1BD2C91800DFCAF9 /* PBXContainerItemProxy */;
+		};
+		80A6194A1BD2C91800DFCAF9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 80A619231BD2C91700DFCAF9 /* 360 Video Text */;
+			targetProxy = 80A619491BD2C91800DFCAF9 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		80A619301BD2C91800DFCAF9 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80A619311BD2C91800DFCAF9 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		80A619351BD2C91800DFCAF9 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				80A619361BD2C91800DFCAF9 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		80A6194F1BD2C91800DFCAF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		80A619501BD2C91800DFCAF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		80A619521BD2C91800DFCAF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "360 Video Text/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-Text";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		80A619531BD2C91800DFCAF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = "360 Video Text/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-Text";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		80A619551BD2C91800DFCAF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "360 Video TextTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-TextTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/360 Video Text.app/360 Video Text";
+			};
+			name = Debug;
+		};
+		80A619561BD2C91800DFCAF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = "360 Video TextTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-TextTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/360 Video Text.app/360 Video Text";
+			};
+			name = Release;
+		};
+		80A619581BD2C91800DFCAF9 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "360 Video TextUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-TextUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "360 Video Text";
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		80A619591BD2C91800DFCAF9 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = "360 Video TextUITests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-TextUITests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = "360 Video Text";
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		80A6191F1BD2C91700DFCAF9 /* Build configuration list for PBXProject "360 Video Text" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80A6194F1BD2C91800DFCAF9 /* Debug */,
+				80A619501BD2C91800DFCAF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		80A619511BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video Text" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80A619521BD2C91800DFCAF9 /* Debug */,
+				80A619531BD2C91800DFCAF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80A619541BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video TextTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80A619551BD2C91800DFCAF9 /* Debug */,
+				80A619561BD2C91800DFCAF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		80A619571BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video TextUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				80A619581BD2C91800DFCAF9 /* Debug */,
+				80A619591BD2C91800DFCAF9 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 80A6191C1BD2C91700DFCAF9 /* Project object */;
+}

@@ -52,6 +52,7 @@ static CGSize const videoSize = {256, 512};
     NSMutableArray *finalImageSequence;
     UIImageView *videoFrame;
     BOOL receivedMemoryWarning, exporting;
+    CGSize exportVImagePreviewSize;
 }
 
 - (void)viewDidLoad {
@@ -88,7 +89,7 @@ static CGSize const videoSize = {256, 512};
         _totalFrame = [[UIView alloc] initWithFrame:[self totalFrameFrame]];
         _totalFrame.center = self.view.center;
         _totalFrame.backgroundColor = [UIColor blackColor];
-        _totalFrame.layer.borderColor = [UIColor lightGrayColor].CGColor;
+//        _totalFrame.layer.borderColor = [UIColor lightGrayColor].CGColor;
         _totalFrame.layer.borderWidth = 2.0f;
         _totalFrame.clipsToBounds = YES;
         [_totalFrame addSubview:self.compositeBackgroundView];
@@ -101,7 +102,7 @@ static CGSize const videoSize = {256, 512};
     if (!_vImagePreview) {
         _vImagePreview = [[UIView alloc] initWithFrame:[self vImagePreviewFrame]];
         _vImagePreview.center = CGPointMake(self.totalFrame.bounds.size.width * 0.5f, self.totalFrame.bounds.size.height * 0.5f);
-        _vImagePreview.layer.borderColor = [UIColor blueColor].CGColor;
+//        _vImagePreview.layer.borderColor = [UIColor blueColor].CGColor;
         _vImagePreview.layer.borderWidth = 5.0f;
     }
     
@@ -111,10 +112,6 @@ static CGSize const videoSize = {256, 512};
 - (CGRect)vImagePreviewFrame {
     CGRect refFrame = [self totalFrameFrame];
     CGRect frame = CGRectMake(0.0f, 0.0f, refFrame.size.width * 0.1562f, refFrame.size.width * 0.1562f);
-    
-    if (exporting) {
-        frame = CGRectMake(0.0f, 0.0f, refFrame.size.width * 0.1562f / 1.33f, refFrame.size.width * 0.1562f * 1.33f * 2.0f);
-    }
     
     return frame;
 }
@@ -259,6 +256,12 @@ static CGSize const videoSize = {256, 512};
     
     [self performSelector:@selector(export) withObject:self afterDelay:1.0f]; // pause to make sure images are not still being saved
     self.vImagePreview.hidden = YES;
+    
+    CGRect refFrame = [self totalFrameFrame];
+    
+    if (exporting) {
+        exportVImagePreviewSize = CGSizeMake(refFrame.size.width * 0.1562f / 1.33f, refFrame.size.width * 0.1562f * 1.33f * 2.0f);
+    }
 }
 
 - (void)export {
@@ -274,7 +277,7 @@ static CGSize const videoSize = {256, 512};
     finalImageSequence = [NSMutableArray new];
     if (!videoFrame) {
         videoFrame = [[UIImageView alloc] initWithFrame:CGRectZero];
-        videoFrame.contentMode = UIViewContentModeScaleToFill;
+        videoFrame.contentMode = UIViewContentModeScaleAspectFill;
     }
     
     [self.compositeBackgroundView addSubview:videoFrame];
@@ -292,7 +295,10 @@ static CGSize const videoSize = {256, 512};
         [self updateVImagePreviewFrameWithYaw:backgroundFrame.yawInDegrees
                                          roll:backgroundFrame.rollInDegrees
                                         pitch:backgroundFrame.pitchInDegrees];
-        videoFrame.frame = self.vImagePreview.frame;
+        CGRect frame = self.vImagePreview.frame;
+        frame.size.width = exportVImagePreviewSize.width;
+        frame.size.height = exportVImagePreviewSize.height;
+        videoFrame.frame = frame;
         UIImage *compositeImage = [self imageWithView:self.compositeBackgroundView];
         [finalImageSequence addObject:compositeImage];
         [self performSelector:@selector(saveNextFrame:)
@@ -366,6 +372,12 @@ static CGSize const videoSize = {256, 512};
         imageView.frame = [self vImagePreviewFrame];
         imageView.center = CGPointMake([self totalFrameFrame].size.width - [self ratioAroundYaw:backgroundFrame.yawInDegrees] * [self totalFrameFrame].size.width, [self ratioAroundRoll:backgroundFrame.rollInDegrees] * [self totalFrameFrame].size.height);
         imageView.transform = CGAffineTransformMakeRotation((backgroundFrame.pitchInDegrees - 0 )* M_PI/180);
+//        CALayer *layer = imageView.layer;
+//        CATransform3D rotationAndPerspectiveTransform = CATransform3DIdentity;
+//        rotationAndPerspectiveTransform.m34 = 1.0 / -500;
+//        rotationAndPerspectiveTransform = CATransform3DRotate(rotationAndPerspectiveTransform, 0.0f, backgroundFrame.pitchInDegrees * M_PI / 180.0f, 1.0f, 0.0f);
+//        layer.transform = rotationAndPerspectiveTransform;
+
         [self.tempImageViews addObject:imageView];
     }
     
@@ -407,6 +419,7 @@ static CGSize const videoSize = {256, 512};
     self.vImagePreview.frame = [self vImagePreviewFrame];
     self.vImagePreview.center = CGPointMake([self totalFrameFrame].size.width - [self ratioAroundYaw:fyaw] * [self totalFrameFrame].size.width, [self ratioAroundRoll:froll] * [self totalFrameFrame].size.height);
     self.vImagePreview.transform = CGAffineTransformMakeRotation(fpitch * M_PI/180);
+    
 }
 
 - (void)updateBackgroundImageView {
@@ -428,8 +441,8 @@ static CGSize const videoSize = {256, 512};
 - (UIImageView *)backgroundImageView {
     if (!_backgroundImageView) {
         _backgroundImageView = [[UIImageView alloc] initWithFrame:[self totalFrameFrame]];
-        _backgroundImageView.layer.borderColor = [UIColor redColor].CGColor;
-        _backgroundImageView.layer.borderWidth = 6.0f;
+//        _backgroundImageView.layer.borderColor = [UIColor redColor].CGColor;
+//        _backgroundImageView.layer.borderWidth = 6.0f;
     }
     
     return _backgroundImageView;

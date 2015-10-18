@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8093F50E1BD3450A00EF1155 /* VRBackgroundFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8093F50D1BD3450A00EF1155 /* VRBackgroundFrame.m */; settings = {ASSET_TAGS = (); }; };
+		8093F5141BD35A9400EF1155 /* VRExportVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8093F5131BD35A9400EF1155 /* VRExportVideo.m */; settings = {ASSET_TAGS = (); }; };
 		80A619291BD2C91800DFCAF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A619281BD2C91800DFCAF9 /* main.m */; };
 		80A6192C1BD2C91800DFCAF9 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6192B1BD2C91800DFCAF9 /* AppDelegate.m */; };
 		80A6192F1BD2C91800DFCAF9 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A6192E1BD2C91800DFCAF9 /* ViewController.m */; };
@@ -35,6 +37,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8093F50C1BD3450A00EF1155 /* VRBackgroundFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRBackgroundFrame.h; sourceTree = "<group>"; };
+		8093F50D1BD3450A00EF1155 /* VRBackgroundFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRBackgroundFrame.m; sourceTree = "<group>"; };
+		8093F5121BD35A9400EF1155 /* VRExportVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRExportVideo.h; sourceTree = "<group>"; };
+		8093F5131BD35A9400EF1155 /* VRExportVideo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRExportVideo.m; sourceTree = "<group>"; };
 		80A619241BD2C91700DFCAF9 /* 360 Video Text.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "360 Video Text.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		80A619281BD2C91800DFCAF9 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		80A6192A1BD2C91800DFCAF9 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -105,6 +111,10 @@
 				80A6192B1BD2C91800DFCAF9 /* AppDelegate.m */,
 				80A6192D1BD2C91800DFCAF9 /* ViewController.h */,
 				80A6192E1BD2C91800DFCAF9 /* ViewController.m */,
+				8093F50C1BD3450A00EF1155 /* VRBackgroundFrame.h */,
+				8093F50D1BD3450A00EF1155 /* VRBackgroundFrame.m */,
+				8093F5121BD35A9400EF1155 /* VRExportVideo.h */,
+				8093F5131BD35A9400EF1155 /* VRExportVideo.m */,
 				80A619301BD2C91800DFCAF9 /* Main.storyboard */,
 				80A619331BD2C91800DFCAF9 /* Assets.xcassets */,
 				80A619351BD2C91800DFCAF9 /* LaunchScreen.storyboard */,
@@ -207,6 +217,7 @@
 				TargetAttributes = {
 					80A619231BD2C91700DFCAF9 = {
 						CreatedOnToolsVersion = 7.0.1;
+						DevelopmentTeam = EJLR2RPSV2;
 					};
 					80A6193C1BD2C91800DFCAF9 = {
 						CreatedOnToolsVersion = 7.0.1;
@@ -271,6 +282,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				80A6192F1BD2C91800DFCAF9 /* ViewController.m in Sources */,
+				8093F50E1BD3450A00EF1155 /* VRBackgroundFrame.m in Sources */,
+				8093F5141BD35A9400EF1155 /* VRExportVideo.m in Sources */,
 				80A6192C1BD2C91800DFCAF9 /* AppDelegate.m in Sources */,
 				80A619291BD2C91800DFCAF9 /* main.m in Sources */,
 			);
@@ -413,10 +426,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "360 Video Text/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-Text";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -424,10 +441,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "360 Video Text/Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.nathanfennel.-60-Video-Text";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
@@ -498,6 +519,7 @@
 				80A619531BD2C91800DFCAF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80A619541BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video TextTests" */ = {
 			isa = XCConfigurationList;
@@ -506,6 +528,7 @@
 				80A619561BD2C91800DFCAF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		80A619571BD2C91800DFCAF9 /* Build configuration list for PBXNativeTarget "360 Video TextUITests" */ = {
 			isa = XCConfigurationList;
@@ -514,6 +537,7 @@
 				80A619591BD2C91800DFCAF9 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

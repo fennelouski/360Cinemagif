@@ -8,8 +8,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface ViewController : UIViewController 
 
+
+@property (nonatomic, strong) UIView *totalFrame;
+
+@property (nonatomic, strong) UIView *compositeBackgroundView;
+
+@property (nonatomic, strong) UIImageView *backgroundImageView;
 
 @end
 

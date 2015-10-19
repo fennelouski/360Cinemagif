@@ -7,7 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
 @interface VRDataManager : NSObject
+
++ (instancetype)sharedManager;
+
+- (CGSize)exportingFrameSize;
+
++ (int)numberOfImagesPerBatch;
 
 @end

@@ -10,6 +10,6 @@
 
 @interface VRExportVideo : NSObject
 
-+ (void)saveMovieToLibrary:(NSArray *)images;
+- (void)saveMovieToLibrary:(NSArray *)images;
 
 @end

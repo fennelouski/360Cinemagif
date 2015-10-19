@@ -7,7 +7,36 @@
 //
 
 #import "VRDataManager.h"
+#import <UIKit/UIKit.h>
 
-@implementation VRDataManager
+@implementation VRDataManager {
+    CGSize frameSize;
+}
+
++ (instancetype)sharedManager {
+    static VRDataManager *sharedDataManager;
+    
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        sharedDataManager = [[VRDataManager alloc] init];
+    });
+
+    return sharedDataManager;
+}
+
+- (CGSize)exportingFrameSize {
+    int width = 1024;
+    while (width % 32 != 0) {
+        width++;
+    }
+    
+    int height = width/2;
+    
+    return (CGSize){height, width};//I'm aware that it's backwards
+}
+
++ (int)numberOfImagesPerBatch {
+    return 300;
+}
 
 @end

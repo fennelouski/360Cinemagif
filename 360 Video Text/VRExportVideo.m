@@ -7,6 +7,7 @@
 //
 
 #import "VRExportVideo.h"
+#import "VRDataManager.h"
 
 #import <UIKit/UIKit.h>
 #import <Foundation/Foundation.h>
@@ -18,8 +19,6 @@
 #define kScreenWidth (([UIScreen mainScreen].bounds.size.width > [UIScreen mainScreen].bounds.size.height) ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height)
 #define kStatusBarHeight (([[UIApplication sharedApplication] statusBarFrame].size.height == 20.0f) ? 20.0f : (([[UIApplication sharedApplication] statusBarFrame].size.height == 40.0f) ? 20.0f : 0.0f))
 #define kScreenHeight (([UIScreen mainScreen].bounds.size.width < [UIScreen mainScreen].bounds.size.height) ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height)
-
-static CGSize const videoSize = {256, 512};
 
 @implementation VRExportVideo
 
@@ -33,8 +32,8 @@ static CGSize const videoSize = {256, 512};
     // You just need the height and width of the video here
     // For us, our input and output video was 640 height x 480 width
     // which is what we get from the iOS front camera
-    int height = videoSize.height;
-    int width = videoSize.width;
+    int height = [[VRDataManager sharedManager] exportingFrameSize].height;
+    int width = [[VRDataManager sharedManager] exportingFrameSize].width;
     
     // You can save a .mov or a .mp4 file
     //NSString *fileNameOut = @"temp.mp4";
@@ -124,6 +123,10 @@ static CGSize const videoSize = {256, 512};
             if (buffer) {
                 // Give the CGImage to the AVAssetWriter to add to your video
                 [adaptor appendPixelBuffer:buffer withPresentationTime:presentTime];
+                
+                // release the buffer!!!!!!!!!!!!!!!!
+                CVPixelBufferRelease(buffer);
+                
                 i++;
             } else {
                 NSLog(@"Finish the session:");
@@ -166,8 +169,8 @@ static CGSize const videoSize = {256, 512};
 - (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image {
     // This again was just our utility class for the height & width of the
     // incoming video (640 height x 480 width)
-    int height = videoSize.height;
-    int width = videoSize.width;
+    int height = [[VRDataManager sharedManager] exportingFrameSize].height;
+    int width = [[VRDataManager sharedManager] exportingFrameSize].width;
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,
@@ -175,8 +178,11 @@ static CGSize const videoSize = {256, 512};
                              nil];
     CVPixelBufferRef pxbuffer = NULL;
     
-    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault, width,
-                                          height, kCVPixelFormatType_32ARGB, (__bridge CFDictionaryRef) options,
+    CVReturn status = CVPixelBufferCreate(kCFAllocatorDefault,
+                                          width,
+                                          height,
+                                          kCVPixelFormatType_32ARGB,
+                                          (__bridge CFDictionaryRef) options,
                                           &pxbuffer);
     
     NSParameterAssert(status == kCVReturnSuccess && pxbuffer != NULL);
@@ -187,8 +193,12 @@ static CGSize const videoSize = {256, 512};
     
     CGColorSpaceRef rgbColorSpace = CGColorSpaceCreateDeviceRGB();
     
-    CGContextRef context = CGBitmapContextCreate(pxdata, width,
-                                                 height, 8, 4*width, rgbColorSpace,
+    CGContextRef context = CGBitmapContextCreate(pxdata,
+                                                 width,
+                                                 height,
+                                                 8,
+                                                 4*width,
+                                                 rgbColorSpace,
                                                  kCGImageAlphaNoneSkipFirst);
     NSParameterAssert(context);
     CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));

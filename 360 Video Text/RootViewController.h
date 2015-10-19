@@ -10,4 +10,8 @@
 
 @interface RootViewController : UIViewController
 
+@property (nonatomic, strong) UIButton *recordVideoButton;
+
+@property (nonatomic, strong) UIButton *playVideoBackButton;
+
 @end

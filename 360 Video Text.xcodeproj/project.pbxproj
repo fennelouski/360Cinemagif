@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80081A831BD5211000C4565E /* VRDataManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 80081A821BD5211000C4565E /* VRDataManager.m */; settings = {ASSET_TAGS = (); }; };
 		8093F50E1BD3450A00EF1155 /* VRBackgroundFrame.m in Sources */ = {isa = PBXBuildFile; fileRef = 8093F50D1BD3450A00EF1155 /* VRBackgroundFrame.m */; settings = {ASSET_TAGS = (); }; };
 		8093F5141BD35A9400EF1155 /* VRExportVideo.m in Sources */ = {isa = PBXBuildFile; fileRef = 8093F5131BD35A9400EF1155 /* VRExportVideo.m */; settings = {ASSET_TAGS = (); }; };
 		80A619291BD2C91800DFCAF9 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80A619281BD2C91800DFCAF9 /* main.m */; };
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80081A811BD5211000C4565E /* VRDataManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRDataManager.h; sourceTree = "<group>"; };
+		80081A821BD5211000C4565E /* VRDataManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRDataManager.m; sourceTree = "<group>"; };
 		8093F50C1BD3450A00EF1155 /* VRBackgroundFrame.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRBackgroundFrame.h; sourceTree = "<group>"; };
 		8093F50D1BD3450A00EF1155 /* VRBackgroundFrame.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VRBackgroundFrame.m; sourceTree = "<group>"; };
 		8093F5121BD35A9400EF1155 /* VRExportVideo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VRExportVideo.h; sourceTree = "<group>"; };
@@ -120,6 +123,8 @@
 				8093F50D1BD3450A00EF1155 /* VRBackgroundFrame.m */,
 				8093F5121BD35A9400EF1155 /* VRExportVideo.h */,
 				8093F5131BD35A9400EF1155 /* VRExportVideo.m */,
+				80081A811BD5211000C4565E /* VRDataManager.h */,
+				80081A821BD5211000C4565E /* VRDataManager.m */,
 				80A619301BD2C91800DFCAF9 /* Main.storyboard */,
 				80A619331BD2C91800DFCAF9 /* Assets.xcassets */,
 				80A619351BD2C91800DFCAF9 /* LaunchScreen.storyboard */,
@@ -289,6 +294,7 @@
 				80A6192F1BD2C91800DFCAF9 /* ViewController.m in Sources */,
 				8093F50E1BD3450A00EF1155 /* VRBackgroundFrame.m in Sources */,
 				80E7004E1BD424AA005A5A5F /* RootViewController.m in Sources */,
+				80081A831BD5211000C4565E /* VRDataManager.m in Sources */,
 				8093F5141BD35A9400EF1155 /* VRExportVideo.m in Sources */,
 				80A6192C1BD2C91800DFCAF9 /* AppDelegate.m in Sources */,
 				80A619291BD2C91800DFCAF9 /* main.m in Sources */,

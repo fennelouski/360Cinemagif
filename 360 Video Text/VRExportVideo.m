@@ -48,7 +48,7 @@
 -(void)writeImageAsMovie:(NSArray *)array toPath:(NSString*)path {
     NSError *error = nil;
 	
-	CGSize size = [[VRDataManager sharedManager] exportingFrameSize];
+	CGSize size = [VRDataManager exportingFrameSize];
 	
 	NSString *fileType = AVFileTypeMPEG4;
 	
@@ -171,8 +171,8 @@
 - (CVPixelBufferRef) pixelBufferFromCGImage: (CGImageRef) image {
     // This again was just our utility class for the height & width of the
     // incoming video (640 height x 480 width)
-    int height = [[VRDataManager sharedManager] exportingFrameSize].height;
-    int width = [[VRDataManager sharedManager] exportingFrameSize].width;
+    int height = [VRDataManager exportingFrameSize].height;
+    int width = [VRDataManager exportingFrameSize].width;
     
     NSDictionary *options = [NSDictionary dictionaryWithObjectsAndKeys:
                              [NSNumber numberWithBool:YES], kCVPixelBufferCGImageCompatibilityKey,

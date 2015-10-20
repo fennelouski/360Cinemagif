@@ -13,7 +13,7 @@
 
 + (instancetype)sharedManager;
 
-- (CGSize)exportingFrameSize;
++ (CGSize)exportingFrameSize;
 
 + (int)numberOfImagesPerBatch;
 

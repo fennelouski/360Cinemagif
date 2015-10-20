@@ -32,11 +32,11 @@
     
     int height = width/2;
     
-    return (CGSize){height, width};//I'm aware that it's backwards
+    return (CGSize){width, height};//I'm aware that it's backwards
 }
 
 + (int)numberOfImagesPerBatch {
-    return 300;
+    return 3000;
 }
 
 @end

@@ -23,22 +23,14 @@
 @implementation VRExportVideo
 
 + (void)saveMovieToLibrary:(NSArray *)images {
-    NSLog(@"+ (void)saveMovieToLibrary:(NSArray *)images");
     [[VRExportVideo new] saveMovieToLibrary:images];
 }
 
 - (void)saveMovieToLibrary:(NSArray *)images {
-    NSLog(@"- (void)saveMovieToLibrary:(NSArray *)images");
-    // You just need the height and width of the video here
-    // For us, our input and output video was 640 height x 480 width
-    // which is what we get from the iOS front camera
-    int height = [[VRDataManager sharedManager] exportingFrameSize].height;
-    int width = [[VRDataManager sharedManager] exportingFrameSize].width;
-    
     // You can save a .mov or a .mp4 file
-    //NSString *fileNameOut = @"temp.mp4";
-    NSString *fileNameOut = @"temp.mov";
-    
+	NSString *fileNameOut = [NSString stringWithFormat:@"%@temp.mp4", [[NSUUID UUID].description substringToIndex:4]];
+//    NSString *fileNameOut = @"temp.mov";
+	
     // We chose to save in the tmp/ directory on the device initially
     NSString *directoryOut = @"tmp/";
     NSString *outFile = [NSString stringWithFormat:@"%@%@",directoryOut,fileNameOut];
@@ -50,26 +42,40 @@
     [fileManager removeItemAtPath:[videoTempURL path]  error:NULL];
     
     
-    [self writeImageAsMovie:images toPath:path size:CGSizeMake(height, width)];
+    [self writeImageAsMovie:images toPath:path];
 }
 
--(void)writeImageAsMovie:(NSArray *)array toPath:(NSString*)path size:(CGSize)size {
-    NSLog(@"-(void)writeImageAsMovie:(NSArray *)array toPath:(NSString*)path size:(CGSize)size ");
+-(void)writeImageAsMovie:(NSArray *)array toPath:(NSString*)path {
     NSError *error = nil;
+	
+	CGSize size = [[VRDataManager sharedManager] exportingFrameSize];
+	
+	NSString *fileType = AVFileTypeMPEG4;
+	
+	if (![[path lowercaseString] hasSuffix:@".mp4"]) {
+		if ([[path lowercaseString] hasSuffix:@".mov"] || [[path lowercaseString] hasSuffix:@".qt"]) {
+			fileType = AVFileTypeQuickTimeMovie;
+		} else if ([[path lowercaseString] hasSuffix:@".m4a"]) {
+			fileType = AVFileTypeAppleM4A;
+		} else if ([[path lowercaseString] hasSuffix:@".m4v"]) {
+			fileType = AVFileTypeAppleM4V;
+		}
+	}
     
     // FIRST, start up an AVAssetWriter instance to write your video
-    // Give it a destination path (for us: tmp/temp.mov)
+    // Give it a destination path (for us: tmp/'UUID'temp.mp4)
     AVAssetWriter *videoWriter = [[AVAssetWriter alloc] initWithURL:[NSURL fileURLWithPath:path]
-                                                           fileType:AVFileTypeQuickTimeMovie
+                                                           fileType:fileType
                                                               error:&error];
     
     
     NSParameterAssert(videoWriter);
     
     NSDictionary *videoSettings = [NSDictionary dictionaryWithObjectsAndKeys:
-                                   AVVideoCodecH264, AVVideoCodecKey,
-                                   [NSNumber numberWithInt:size.width], AVVideoWidthKey,
+								   AVVideoCodecH264,					 AVVideoCodecKey,
+                                   [NSNumber numberWithInt:size.width],  AVVideoWidthKey,
                                    [NSNumber numberWithInt:size.height], AVVideoHeightKey,
+								   AVVideoScalingModeResize,			 AVVideoScalingModeKey,
                                    nil];
     
     AVAssetWriterInput* writerInput = [AVAssetWriterInput assetWriterInputWithMediaType:AVMediaTypeVideo
@@ -80,7 +86,7 @@
     NSParameterAssert(writerInput);
     NSParameterAssert([videoWriter canAddInput:writerInput]);
     [videoWriter addInput:writerInput];
-
+	
     //Start a SESSION of writing.
     // After you start a session, you will keep adding image frames
     // until you are complete - then you will tell it you are done.
@@ -111,8 +117,7 @@
             // This ensures the first frame starts at 0.
             
             
-            if (i >= [array count])
-            {
+            if (i >= [array count]) {
                 buffer = NULL;
             } else {
                 // This command grabs the next UIImage and converts it to a CGImage
@@ -138,8 +143,7 @@
                 // You now need to give a completion handler.
                 [videoWriter finishWritingWithCompletionHandler:^{
                     NSLog(@"Finished writing...checking completion status...");
-                    if (videoWriter.status != AVAssetWriterStatusFailed && videoWriter.status == AVAssetWriterStatusCompleted)
-                    {
+                    if (videoWriter.status != AVAssetWriterStatusFailed && videoWriter.status == AVAssetWriterStatusCompleted) {
                         NSLog(@"Video writing succeeded.");
                         
                         // Move video to camera roll
@@ -150,11 +154,9 @@
 //                        NSLog(@"Delay to write by 5 seconds");
 //                        [self performSelector:@selector(saveToCameraRoll:) withObject:videoTempURL afterDelay:5.0f];
                         
-                    } else
-                    {
+                    } else {
                         NSLog(@"Video writing failed: %@", videoWriter.error);
                     }
-                    
                 }]; // end videoWriter finishWriting Block
                 
                 CVPixelBufferPoolRelease(adaptor.pixelBufferPool);
@@ -201,7 +203,7 @@
                                                  rgbColorSpace,
                                                  kCGImageAlphaNoneSkipFirst);
     NSParameterAssert(context);
-    CGContextConcatCTM(context, CGAffineTransformMakeRotation(0));
+//    CGContextConcatCTM(context, CGAffineTransformMakeRotation(((float)(arc4random()%628)) / 100.0f - 3.14f));
     CGContextDrawImage(context, CGRectMake(0, 0, CGImageGetWidth(image),
                                            CGImageGetHeight(image)), image);
     CGColorSpaceRelease(rgbColorSpace);

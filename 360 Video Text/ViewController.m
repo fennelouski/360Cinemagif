@@ -105,7 +105,7 @@
         _vImagePreview.center = CGPointMake(self.totalFrame.bounds.size.width * 0.5f, self.totalFrame.bounds.size.height * 0.5f);
 //        _vImagePreview.layer.borderColor = [UIColor blueColor].CGColor;
 //        _vImagePreview.layer.borderWidth = 5.0f;
-        _vImagePreview.contentMode = UIViewContentModeScaleAspectFill;
+        _vImagePreview.contentMode = UIViewContentModeScaleToFill;
     }
     
     return _vImagePreview;
@@ -272,7 +272,6 @@
 }
 
 - (void)export {
-    
     self.compositeBackgroundView.frame = [self totalFrameFrame];
     self.backgroundImageView.frame = [self totalFrameFrame];
     self.totalFrame.frame = [self totalFrameFrame];
@@ -285,7 +284,7 @@
     finalImageSequence = [NSMutableArray new];
     if (!videoFrame) {
         videoFrame = [[UIImageView alloc] initWithFrame:CGRectZero];
-        videoFrame.contentMode = UIViewContentModeScaleAspectFill;
+        videoFrame.contentMode = UIViewContentModeScaleToFill;
     }
     
     [self.compositeBackgroundView addSubview:videoFrame];
@@ -310,6 +309,7 @@
         videoFrame.frame = frame;
         videoFrame.contentMode = UIViewContentModeScaleToFill;
         UIImage *compositeImage = [self imageWithView:self.compositeBackgroundView];
+		videoFrame.transform = CGAffineTransformMakeRotation((backgroundFrame.pitchInDegrees - 0)* M_PI/180);
         [finalImageSequence addObject:compositeImage];
         [self performSelector:@selector(saveNextFrame:)
                    withObject:[NSNumber numberWithInt:frameNumber.intValue + 1]

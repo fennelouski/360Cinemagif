@@ -6,3 +6,9 @@ To-Do:
  - Move VR rendering to the background both visually and programmatically
  - Increase Max Video Length
  - Open Photo Library to show videos
+
+
+Author:
+
+Nathan Fennel
+nathanfennel@gmail.com

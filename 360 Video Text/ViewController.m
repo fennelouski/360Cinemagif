@@ -266,8 +266,8 @@
     CGRect refFrame = [self totalFrameFrame];
     
     if (exporting) {
-        exportVImagePreviewSize = CGSizeMake(refFrame.size.width * 0.1562f / 1.33f,
-                                             refFrame.size.width * 0.1562f * 1.33f * 2.0f);
+        exportVImagePreviewSize = CGSizeMake(refFrame.size.width * [VRDataManager exportingRatio],
+                                             refFrame.size.width * [VRDataManager exportingRatio]);
     }
 }
 
@@ -334,6 +334,7 @@
         }
         
         [finalImageSequence removeAllObjects];
+		[self.images removeAllObjects];
         
         if (reversed.count > 0) {
             [self performSelector:@selector(saveNextFrame:)

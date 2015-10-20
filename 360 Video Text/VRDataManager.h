@@ -17,4 +17,6 @@
 
 + (int)numberOfImagesPerBatch;
 
++ (float)exportingRatio;
+
 @end

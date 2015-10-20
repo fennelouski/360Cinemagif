@@ -68,11 +68,12 @@
     
     
     [NSTimer scheduledTimerWithTimeInterval:0.0083 target:self selector:@selector(doSomething) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:2.0f target:self selector:@selector(updateBackgroundImageView) userInfo:nil repeats:YES];
+    [NSTimer scheduledTimerWithTimeInterval:0.12 target:self selector:@selector(updateBackgroundImageView) userInfo:nil repeats:YES];
     
     [self.view addSubview:self.lbl_pitch];
     [self.view addSubview:self.lbl_roll];
     [self.view addSubview:self.lbl_yaw];
+	[self.view addSubview:self.lbl_isvalid];
     [self.view addSubview:self.recordButton];
     [self.view addSubview:self.exportButton];
     [self.view addSubview:self.dismissButton];
@@ -106,6 +107,7 @@
 //        _vImagePreview.layer.borderColor = [UIColor blueColor].CGColor;
 //        _vImagePreview.layer.borderWidth = 5.0f;
         _vImagePreview.contentMode = UIViewContentModeScaleToFill;
+//		_vImagePreview.hidden = YES;
     }
     
     return _vImagePreview;
@@ -113,7 +115,7 @@
 
 - (CGRect)vImagePreviewFrame {
     CGRect refFrame = [self totalFrameFrame];
-    CGRect frame = CGRectMake(0.0f, 0.0f, refFrame.size.width * 0.1562f, refFrame.size.width * 0.1562f);
+    CGRect frame = CGRectMake(0.0f, 0.0f, refFrame.size.width * [VRDataManager exportingRatio], refFrame.size.width * [VRDataManager exportingRatio]);
     
     return frame;
 }
@@ -131,8 +133,8 @@
     CGRect frame = self.view.bounds;
     
     if (exporting) {
-        frame.size.width = [[VRDataManager sharedManager] exportingFrameSize].width * 0.5f;//frame.size.height * 2.0f;
-        frame.size.height = [[VRDataManager sharedManager] exportingFrameSize].height * 0.5f;
+        frame.size.width = [VRDataManager exportingFrameSize].width * 0.5f;//frame.size.height * 2.0f;
+        frame.size.height = [VRDataManager exportingFrameSize].height * 0.5f;
     }
     
     return frame;
@@ -376,7 +378,7 @@
     
     NSMutableArray *copiedArray = [NSMutableArray new];
     
-    for (int i = compositedRange; i < self.images.count; i+= 6) {
+    for (int i = compositedRange; i < self.images.count; i+= 3) {
         [copiedArray addObject:[self.images objectAtIndex:i]];
         compositedRange = i;
     }
@@ -418,9 +420,11 @@
     self.lbl_pitch.text = [ NSString stringWithFormat:@"P: %.0f",fpitch];
     self.lbl_yaw.text   = [ NSString stringWithFormat:@"Y: %.0f",fyaw];
     self.lbl_roll.text  = [ NSString stringWithFormat:@"R: %.0f",froll];
-    
+	
+	float cosine = fabs(sinf((froll + 90) / 180 * M_PI)) + 1.0f;
+	self.lbl_isvalid.text = [ NSString stringWithFormat:@"C: %.0f",cosine];
     CGRect frame = [self vImagePreviewFrame];
-    frame.size.width *= fabs(sinf((froll + 90) / 180 * M_PI)) + 1.0f;
+    frame.size.width *= cosine;
     self.vImagePreview.frame = frame;
     self.vImagePreview.center = CGPointMake([self totalFrameFrame].size.width - [self ratioAroundYaw:fyaw] * [self totalFrameFrame].size.width, [self ratioAroundRoll:froll] * [self totalFrameFrame].size.height);
     self.vImagePreview.transform = CGAffineTransformMakeRotation(fpitch * M_PI/180);
@@ -572,9 +576,15 @@
     // Create a UIImage from the sample buffer data
     UIImage *image = [self imageFromSampleBuffer:sampleBuffer];
     
-//    NSLog(@"Nothing will happen here either...I changed the same parameters as at the other place");
     VRBackgroundFrame *backgroundFrame = [VRBackgroundFrame new];
-    backgroundFrame.image = [self imageWithImage:image scaledToSize:[self vImagePreviewFrame].size];
+	
+	CGSize scaledSize = [self vImagePreviewFrame].size;
+	
+	if (scaledSize.width < 128) {
+		scaledSize = CGSizeMake(128.0f, 128.0f);
+	}
+	
+    backgroundFrame.image = [self imageWithImage:image scaledToSize:scaledSize];
     NSLog(@"Image is: %g x %g", backgroundFrame.image.size.width, backgroundFrame.image.size.height);
     backgroundFrame.pitchInDegrees = currentBackgroundFramePitchInDegrees;
     backgroundFrame.rollInDegrees = currentBackgroundFrameRollInDegrees;
@@ -679,6 +689,8 @@
 }
 
 - (void)dismissButtonTouched:(UIButton *)button {
+	[self.AVSession stopRunning];
+	
     [self dismissViewControllerAnimated:YES
                              completion:^{
                                  

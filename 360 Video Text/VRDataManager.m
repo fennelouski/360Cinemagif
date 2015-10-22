@@ -90,10 +90,10 @@
 	if ([platform isEqualToString:@"iPhone5,2"])    return 0.12f; //@"iPhone 5 (GSM+CDMA)";
 	if ([platform isEqualToString:@"iPhone5,3"])    return 0.12f; //@"iPhone 5c (GSM)";
 	if ([platform isEqualToString:@"iPhone5,4"])    return 0.12f; //@"iPhone 5c (GSM+CDMA)";
-	if ([platform isEqualToString:@"iPhone6,1"])    return 0.115f; //@"iPhone 5s (GSM)";
-	if ([platform isEqualToString:@"iPhone6,2"])    return 0.115f; //@"iPhone 5s (GSM+CDMA)";
-	if ([platform isEqualToString:@"iPhone7,1"])    return 0.12f; //@"iPhone 6 Plus";
-	if ([platform isEqualToString:@"iPhone7,2"])    return 0.12f; //@"iPhone 6";
+	if ([platform isEqualToString:@"iPhone6,1"])    return 0.145f; //@"iPhone 5s (GSM)";
+	if ([platform isEqualToString:@"iPhone6,2"])    return 0.145f; //@"iPhone 5s (GSM+CDMA)";
+	if ([platform isEqualToString:@"iPhone7,1"])    return 0.132f; //@"iPhone 6 Plus";
+	if ([platform isEqualToString:@"iPhone7,2"])    return 0.142f; //@"iPhone 6";
 	if ([platform isEqualToString:@"iPhone8,1"])    return 0.12f; //@"iPhone 6s Plus";
 	if ([platform isEqualToString:@"iPhone8,2"])    return 0.12f; //@"iPhone 6s";
 	if ([platform isEqualToString:@"iPod1,1"])      return 0.12f; //@"iPod Touch 1G";

@@ -53,6 +53,7 @@
     UIImageView *videoFrame;
     BOOL receivedMemoryWarning, exporting;
     CGSize exportVImagePreviewSize;
+	NSArray *timers;
 }
 
 - (void)viewDidLoad {
@@ -66,9 +67,10 @@
     [self start];
     [self.totalFrame addSubview:self.compositeBackgroundView];
     
-    
-    [NSTimer scheduledTimerWithTimeInterval:0.0083 target:self selector:@selector(doSomething) userInfo:nil repeats:YES];
-    [NSTimer scheduledTimerWithTimeInterval:0.12 target:self selector:@selector(updateBackgroundImageView) userInfo:nil repeats:YES];
+	
+    NSTimer *timer1 = [NSTimer scheduledTimerWithTimeInterval:0.0083 target:self selector:@selector(doSomething) userInfo:nil repeats:YES];
+    NSTimer *timer2 = [NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(updateBackgroundImageView) userInfo:nil repeats:YES];
+	timers = @[timer1, timer2];
     
     [self.view addSubview:self.lbl_pitch];
     [self.view addSubview:self.lbl_roll];
@@ -77,6 +79,14 @@
     [self.view addSubview:self.recordButton];
     [self.view addSubview:self.exportButton];
     [self.view addSubview:self.dismissButton];
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+	[super viewDidDisappear:animated];
+	
+	for (NSTimer *timer in timers) {
+		[timer invalidate];
+	}
 }
 
 - (void)updateViewConstraints {
@@ -234,6 +244,7 @@
         _lbl_isvalid = [[UILabel alloc] initWithFrame:CGRectMake(0.0f, self.view.bounds.size.height - 252.0f, 60.0f, 44.0f)];
         _lbl_isvalid.backgroundColor = [UIColor whiteColor];
         _lbl_isvalid.alpha = 0.5f;
+		_lbl_isvalid.adjustsFontSizeToFitWidth = YES;
     }
     
     return _lbl_isvalid;
@@ -315,7 +326,7 @@
         [finalImageSequence addObject:compositeImage];
         [self performSelector:@selector(saveNextFrame:)
                    withObject:[NSNumber numberWithInt:frameNumber.intValue + 1]
-                   afterDelay:0.05f];
+                   afterDelay:0.02f];
     } else {
         NSMutableArray *partialImageSequences = [NSMutableArray new];
         
@@ -374,8 +385,8 @@
         return;
     }
     
-    
-    
+	
+	
     NSMutableArray *copiedArray = [NSMutableArray new];
     
     for (int i = compositedRange; i < self.images.count; i+= 3) {
@@ -396,6 +407,8 @@
 
         [self.tempImageViews addObject:imageView];
     }
+	
+	[copiedArray removeAllObjects];
     
     for (UIImageView *imageView in self.tempImageViews) {
         [self.compositeBackgroundView addSubview:imageView];
@@ -422,7 +435,7 @@
     self.lbl_roll.text  = [ NSString stringWithFormat:@"R: %.0f",froll];
 	
 	float cosine = fabs(sinf((froll + 90) / 180 * M_PI)) + 1.0f;
-	self.lbl_isvalid.text = [ NSString stringWithFormat:@"C: %.0f",cosine];
+	self.lbl_isvalid.text = [ NSString stringWithFormat:@"%g",cosine];
     CGRect frame = [self vImagePreviewFrame];
     frame.size.width *= cosine;
     self.vImagePreview.frame = frame;
@@ -580,8 +593,9 @@
 	
 	CGSize scaledSize = [self vImagePreviewFrame].size;
 	
-	if (scaledSize.width < 128) {
-		scaledSize = CGSizeMake(128.0f, 128.0f);
+	float maxSize = 256.0f;
+	if (scaledSize.width < maxSize) {
+		scaledSize = CGSizeMake(maxSize, maxSize);
 	}
 	
     backgroundFrame.image = [self imageWithImage:image scaledToSize:scaledSize];
@@ -591,6 +605,11 @@
     backgroundFrame.yawInDegrees = currentBackgroundFrameYawInDegrees;
 //    backgroundFrame.frame = currentBackgroundFrame;
 //    backgroundFrame.pitchInDegrees = currentBackgroundFramePitchInDegrees;
+	
+	if (self.images.count >= [VRDataManager numberOfImagesPerBatch]) {
+		[self.images removeObject:[self.images firstObject]];
+	}
+	
     [self.images addObject:backgroundFrame];
 }
 

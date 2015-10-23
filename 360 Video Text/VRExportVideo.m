@@ -20,7 +20,9 @@
 #define kStatusBarHeight (([[UIApplication sharedApplication] statusBarFrame].size.height == 20.0f) ? 20.0f : (([[UIApplication sharedApplication] statusBarFrame].size.height == 40.0f) ? 20.0f : 0.0f))
 #define kScreenHeight (([UIScreen mainScreen].bounds.size.width < [UIScreen mainScreen].bounds.size.height) ? [UIScreen mainScreen].bounds.size.width : [UIScreen mainScreen].bounds.size.height)
 
-@implementation VRExportVideo
+@implementation VRExportVideo {
+	NSString *path;
+}
 
 + (void)saveMovieToLibrary:(NSArray *)images {
     [[VRExportVideo new] saveMovieToLibrary:images];
@@ -34,18 +36,17 @@
     // We chose to save in the tmp/ directory on the device initially
     NSString *directoryOut = @"tmp/";
     NSString *outFile = [NSString stringWithFormat:@"%@%@",directoryOut,fileNameOut];
-    NSString *path = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", outFile]];
+    path = [NSHomeDirectory() stringByAppendingPathComponent:[NSString stringWithFormat:@"%@", outFile]];
     NSURL *videoTempURL = [NSURL fileURLWithPath:[NSString stringWithFormat:@"%@%@", NSTemporaryDirectory(), fileNameOut]];
     
     // WARNING: AVAssetWriter does not overwrite files for us, so remove the destination file if it already exists
     NSFileManager *fileManager = [NSFileManager defaultManager];
     [fileManager removeItemAtPath:[videoTempURL path]  error:NULL];
     
-    
-    [self writeImageAsMovie:images toPath:path];
+	[self performSelectorInBackground:@selector(writeImageAsMovie:) withObject:images];
 }
 
--(void)writeImageAsMovie:(NSArray *)array toPath:(NSString*)path {
+-(void)writeImageAsMovie:(NSArray *)array {
     NSError *error = nil;
 	
 	CGSize size = [VRDataManager exportingFrameSize];

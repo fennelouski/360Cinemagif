@@ -36,6 +36,8 @@
 
 @property (nonatomic, strong) AVCaptureSession *AVSession;
 
+@property (nonatomic, strong) UILabel *exportingLabel;
+
 @end
 
 
@@ -72,11 +74,11 @@
     NSTimer *timer2 = [NSTimer scheduledTimerWithTimeInterval:0.15 target:self selector:@selector(updateBackgroundImageView) userInfo:nil repeats:YES];
 	timers = @[timer1, timer2];
     
-    [self.view addSubview:self.lbl_pitch];
-    [self.view addSubview:self.lbl_roll];
-    [self.view addSubview:self.lbl_yaw];
-	[self.view addSubview:self.lbl_isvalid];
-    [self.view addSubview:self.recordButton];
+//    [self.view addSubview:self.lbl_pitch];
+//    [self.view addSubview:self.lbl_roll];
+//    [self.view addSubview:self.lbl_yaw];
+//	[self.view addSubview:self.lbl_isvalid];
+//    [self.view addSubview:self.recordButton];
     [self.view addSubview:self.exportButton];
     [self.view addSubview:self.dismissButton];
 }
@@ -112,12 +114,9 @@
 
 - (UIView *)vImagePreview {
     if (!_vImagePreview) {
-        _vImagePreview = [[UIView alloc] initWithFrame:[self vImagePreviewFrame]];
+        _vImagePreview = [[UIView alloc] initWithFrame:self.view.bounds];
         _vImagePreview.center = CGPointMake(self.totalFrame.bounds.size.width * 0.5f, self.totalFrame.bounds.size.height * 0.5f);
-//        _vImagePreview.layer.borderColor = [UIColor blueColor].CGColor;
-//        _vImagePreview.layer.borderWidth = 5.0f;
         _vImagePreview.contentMode = UIViewContentModeScaleToFill;
-//		_vImagePreview.hidden = YES;
     }
     
     return _vImagePreview;
@@ -250,6 +249,9 @@
     return _lbl_isvalid;
 }
 
+
+#pragma mark - Export Button
+
 - (UIButton *)exportButton {
     if (!_exportButton) {
         _exportButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, self.view.bounds.size.height - 60, 44.0f, 44.0f)];
@@ -280,7 +282,7 @@
     
     if (exporting) {
         exportVImagePreviewSize = CGSizeMake(refFrame.size.width * [VRDataManager exportingRatio],
-                                             refFrame.size.width * [VRDataManager exportingRatio]);
+                                             refFrame.size.width * [VRDataManager exportingRatio] * 0.75f);
     }
 }
 
@@ -289,6 +291,9 @@
     self.backgroundImageView.frame = [self totalFrameFrame];
     self.totalFrame.frame = [self totalFrameFrame];
     self.totalFrame.center = self.view.center;
+	self.exportingLabel.frame = self.view.bounds;
+	[self.view addSubview:self.exportingLabel];
+	[self animateExportingLabel];
     
     if (finalImageSequence) {
         [finalImageSequence removeAllObjects];
@@ -364,6 +369,9 @@
     [[[VRExportVideo alloc] init] saveMovieToLibrary:imageSequence];
 }
 
+
+#pragma mark - Record Button
+
 - (UIButton *)recordButton {
     if (!_recordButton) {
         _recordButton = [[UIButton alloc] initWithFrame:CGRectMake(self.view.bounds.size.width - 60, 20.0f, 44.0f, 44.0f)];
@@ -438,10 +446,13 @@
 	self.lbl_isvalid.text = [ NSString stringWithFormat:@"%g",cosine];
     CGRect frame = [self vImagePreviewFrame];
     frame.size.width *= cosine;
-    self.vImagePreview.frame = frame;
-    self.vImagePreview.center = CGPointMake([self totalFrameFrame].size.width - [self ratioAroundYaw:fyaw] * [self totalFrameFrame].size.width, [self ratioAroundRoll:froll] * [self totalFrameFrame].size.height);
-    self.vImagePreview.transform = CGAffineTransformMakeRotation(fpitch * M_PI/180);
-    
+	frame = self.view.bounds;
+//    self.vImagePreview.frame = frame;
+//    self.vImagePreview.center = CGPointMake([self totalFrameFrame].size.width - [self ratioAroundYaw:fyaw] * [self totalFrameFrame].size.width, [self ratioAroundRoll:froll] * [self totalFrameFrame].size.height);
+//    self.vImagePreview.transform = CGAffineTransformMakeRotation(fpitch * M_PI/180);
+	self.vImagePreview.frame = self.view.bounds;
+	self.vImagePreview.center = CGPointMake(self.vImagePreview.superview.frame.size.width * 0.5f, self.vImagePreview.superview.frame.size.height * 0.5f);
+	
     currentBackgroundFramePitchInDegrees = fpitch;
     currentBackgroundFrameRollInDegrees = froll;
     currentBackgroundFrameYawInDegrees = fyaw;
@@ -698,8 +709,11 @@
 
 - (UIButton *)dismissButton {
     if (!_dismissButton) {
-        _dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, 100.0f, 100.0f)];
+		CGSize buttonSize = CGSizeMake(44.0f, 44.0f);
+        _dismissButton = [[UIButton alloc] initWithFrame:CGRectMake(0.0f, 0.0f, buttonSize.width, buttonSize.height)];
+		_dismissButton.center = CGPointMake(buttonSize.width, self.view.frame.size.height - buttonSize.height);
         [_dismissButton setTitle:@"Done" forState:UIControlStateNormal];
+		_dismissButton.titleLabel.adjustsFontSizeToFitWidth = YES;
         _dismissButton.backgroundColor = [UIColor blueColor];
         [_dismissButton addTarget:self action:@selector(dismissButtonTouched:) forControlEvents:UIControlEventTouchUpInside];
     }
@@ -715,6 +729,52 @@
                                  
                              }];
 }
+
+
+
+
+
+
+#pragma mark - Exporting Label
+
+- (UILabel *)exportingLabel {
+	if (!_exportingLabel) {
+		_exportingLabel = [[UILabel alloc] initWithFrame:self.view.bounds];
+		_exportingLabel.textColor = [UIColor redColor];
+		_exportingLabel.text = @"Exporting";
+		_exportingLabel.font = [UIFont boldSystemFontOfSize:self.view.bounds.size.height * 0.15f];
+		_exportingLabel.textAlignment = NSTextAlignmentCenter;
+		_exportingLabel.alpha = 0.1f;
+	}
+	
+	return _exportingLabel;
+}
+
+- (void)animateExportingLabel {
+	[UIView animateWithDuration:1.0f
+						  delay:0.0f
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 _exportingLabel.textColor = [UIColor whiteColor];
+					 } completion:^(BOOL finished) {
+						 [self animateExportingLabelWhite];
+					 }];
+}
+
+- (void)animateExportingLabelWhite {
+	[UIView animateWithDuration:5.0f
+						  delay:0.0f
+						options:UIViewAnimationOptionCurveEaseInOut
+					 animations:^{
+						 _exportingLabel.textColor = [UIColor redColor];
+					 } completion:^(BOOL finished) {
+						 [self animateExportingLabel];
+					 }];
+}
+
+
+
+#pragma mark - Memory Warning
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
